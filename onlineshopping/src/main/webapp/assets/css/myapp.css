@@ -8,8 +8,7 @@ html {
 }
 
 body {
-	padding-top: 54px;
-	height: 100%;
+ 	height: 100%;
 }
 
 footer{
@@ -18,22 +17,25 @@ footer{
 
 .wrapper {
 	min-height: 100%;
-	position: relative;
-}
+ }
 
 .content {
 	padding-bottom: 60px; /* height of the footer*/
 }
 
 .footer {
-	position: absolute;
-	bottom: 15px;
+	 bottom: 15px;
 	height: 60px;
 	margin: auto;
+	 
+}
+
+.dataTableImg{
+	height: 100px;
+	width: 100px;
 }
 
 @media ( min-width : 992px) {
 	body {
-		padding-top: 56px;
-	}
+ 	}
 }

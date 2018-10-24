@@ -1,5 +1,5 @@
 
-<div class="container-fluid bg-dark footer border border-secondary">
+<div class="container-fluid bg-dark footer border border-danger">
 	<footer class="bg-dark">
 		<div class="row">
 			<div class="col-lg-12">
