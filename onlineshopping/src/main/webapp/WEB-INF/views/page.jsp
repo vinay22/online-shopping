@@ -18,6 +18,8 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
+<meta name="_csrf" content="${_csrf.token}">
+<meta name="_csrf_header" content="${_csrf.headerName}">
 
 <title>OnlineShopping - ${title}</title>
 
@@ -31,10 +33,13 @@
 <!-- Bootstrap cyborg theme -->
 <link href="${css}/bootstrap-flatly-theme.css" rel="stylesheet">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
 <!-- Bootstrap dataTables -->
 <link href="${css}/dataTables.bootstrap4.css" rel="stylesheet">
- 
+
 <!-- Custom styles for this template -->
 <link href="${css}/myapp.css" rel="stylesheet">
 
@@ -68,30 +73,46 @@
 				test="${userClickAllProducts == true or userClickCategoryProducts == true}">
 				<%@ include file="listProducts.jsp"%>
 			</c:if>
-			
+
 			<!-- Loading only when user clicks show product -->
-			<c:if
-				test="${userClickShowProduct == true}">
+			<c:if test="${userClickShowProduct == true}">
 				<%@ include file="singleProduct.jsp"%>
+			</c:if>
+
+			<!-- Loading only when user clicks manage products -->
+			<c:if test="${userClickManageProducts == true}">
+				<%@ include file="manageProducts.jsp"%>
+			</c:if>
+
+			<!-- Loading only when user clicks manage products -->
+			<c:if test="${userClickShowCart == true}">
+				<%@ include file="cart.jsp"%>
 			</c:if>
 
 		</div>
 		<!-- Footer -->
 		<%@ include file="./shared/footer.jsp"%>
 
-		<!-- Bootstrap core JavaScript -->
+		<!-- JQuery -->
 		<script src="${js}/jquery.js"></script>
-		<script src="${js}/bootstrap.bundle.min.js"></script>
+
+		<!-- validate js-->
+		<script src="${js}/jquery.validate.js"></script>
+
+		<!-- Bootstrap core JavaScript -->
+		<script src="${js}/bootstrap.min.js"></script>
 
 		<!-- Datatables core JavaScript plugin-->
 		<script src="${js}/jquery.dataTables.js"></script>
 
 		<!-- Datatables bootstrap script-->
 		<script src="${js}/dataTables.bootstrap4.js"></script>
- 
- 		<!-- self coded js -->
+
+		<!-- bootbox js -->
+		<script src="${js}/bootbox.min.js"></script>
+
+		<!-- self coded js -->
 		<script src="${js}/myapp.js"></script>
 	</div>
 </body>
-
 </html>

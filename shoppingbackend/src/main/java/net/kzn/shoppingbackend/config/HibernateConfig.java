@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.Transactional;
 
 @Configuration
 @ComponentScan(basePackages = {"net.kzn.shoppingbackend"})
@@ -27,7 +26,7 @@ public class HibernateConfig {
 	private final static String DATABASE_PASSWORD = "";
 
 	// database bean will be available
-	@Bean
+	@Bean("dataSource")
 	public DataSource getDataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 
@@ -48,7 +47,7 @@ public class HibernateConfig {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource);
 
 		builder.addProperties(getHibernateProperties());
-		builder.scanPackages("net.kzn.shoppingbackend.dto");
+		builder.scanPackages("net.kzn.shoppingbackend");
 
 		return builder.buildSessionFactory();
 	}
@@ -59,8 +58,10 @@ public class HibernateConfig {
 		Properties properties = new Properties();
 
 		properties.put("hibernate.dialect", DATABASE_DIALECT);
-		properties.put("hibernate.show_sql", "true");
+ 		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.format_sql", "true");
+		
+		properties.put("hibernate.hbm2ddl.auto", "update");
 
 		return properties;
 	}

@@ -49,35 +49,36 @@
 			<div class="row">
 
 				<div class="col-12">
+					 	<div class="table-responsive-lg">
+							<table id="productListTable"
+								class="table table-striped table-bordered">
+								<thead>
+									<tr>
+										<th></th>
+										<th scope="col">Name</th>
+										<th scope="col">Brand</th>
+										<th scope="col">Price</th>
+										<th scope="col">Qty. available</th>
+										<th></th>
+									</tr>
+								</thead>
 
-					<table id="productListTable"
-						class="table table-striped table-bordered">
-						<thead>
-							<tr>
-								<th></th>
-								<th scope="col">Name</th>
-								<th scope="col">Brand</th>
-								<th scope="col">Price</th>
-								<th scope="col">Qty. available</th>
-								<th></th>
-							</tr>
-						</thead>
+								<tfoot>
+									<tr>
+										<th></th>
+										<th>Name</th>
+										<th>Brand</th>
+										<th>Price</th>
+										<th>Qty. available</th>
+										<th></th>
 
-						<tfoot>
-							<tr>
-								<th></th>
-								<th>Name</th>
-								<th>Brand</th>
-								<th>Price</th>
-								<th>Qty. available</th>
-								<th></th>
+									</tr>
+								</tfoot>
 
-							</tr>
-						</tfoot>
+							</table>
 
-					</table>
-
-
+						</div>
+					  
 				</div>
 
 			</div>
