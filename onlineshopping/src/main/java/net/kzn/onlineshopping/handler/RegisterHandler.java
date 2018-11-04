@@ -52,7 +52,7 @@ public class RegisterHandler {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		
 		//save the user
-		userDAO.addUser(user);
+		userDAO.add(user);
 		
 		//get the address
 		

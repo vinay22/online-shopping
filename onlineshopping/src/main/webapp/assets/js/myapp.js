@@ -2,11 +2,11 @@ $(function() {
 	// solving the active menu problem
 	switch (menu) {
 
-	case 'About us':
+	case 'About Us':
 		$('#about').addClass('active');
 		break;
 
-	case 'Contact us':
+	case 'Contact Us':
 		$('#contact').addClass('active');
 		break;
 
@@ -14,14 +14,14 @@ $(function() {
 		$('#listproducts').addClass('active');
 		break;
 
-	case 'Manage Products':
-		$('#manageproducts').addClass('active');
+	case 'Product Management':
+		$('#manageProduct').addClass('active');
 		break;
 
-	case 'User Cart':
-		$('#userCart').addClass('active');
+	case 'Shopping Cart':
+		$('#userModel').addClass('active');
 		break;
-		
+
 	default:
 		if (menu == "home")
 			break;
@@ -198,16 +198,16 @@ $(function() {
 	// data table for admin
 	// ---------------------------
 
-	var $adminProductsTable = $('#adminProductsTable');
+	var $productsTable = $('#productsTable');
 	// excute the below code only where we have this table
 
-	if ($adminProductsTable.length) {
+	if ($productsTable.length) {
 
 		// console.log('inside the table');
 
 		var jsonUrl = window.contextRoot + '/json/data/admin/all/products';
 
-		$adminProductsTable
+		$productsTable
 				.DataTable({
 
 					lengthMenu : [ [ 10, 30, 50, -1 ],
@@ -361,6 +361,23 @@ $(function() {
 				});
 	}
 
+	// jQuery Validation Code
+
+	// methods required for validation
+
+	function errorPlacement(error, element) {
+		// Add the 'help-block' class to the error element
+		error.addClass("help-block");
+
+		// add the error label after the input element
+		error.insertAfter(element);
+
+		// add the has-feedback class to the
+		// parent div.validate in order to add icons to inputs
+		element.parents(".validate").addClass("has-feedback");
+
+	}
+
 	// ---------------------------
 	// validation code for category
 	var $categoryForm = $('#categoryForm');
@@ -432,4 +449,77 @@ $(function() {
 
 	// -------------------------
 
+	// handling the click event of refresh cart button
+
+	$('button[name="refreshCart"]')
+			.click(
+					function() {
+
+						// fetch the cart line id
+
+						var cartLineId = $(this).attr('value');
+						var countElement = $('#count_' + cartLineId);
+
+						var originalCount = countElement.attr('value');
+						var currentCount = countElement.val();
+
+						if (currentCount !== originalCount) {
+
+							if (currentCount < 1 || currentCount > 3) {
+
+								// reverting back to the original count
+								// user has given value below 1 and above 3
+
+								countElement.val(originalCount);
+								bootbox
+										.alert({
+											size : 'medium',
+											title : 'Error',
+											message : 'Product count should be minimum 1 and maximum 3!'
+										});
+							} else {
+								var updateUrl = window.contextRoot + '/cart/'
+										+ cartLineId + '/update?count='
+										+ currentCount;
+
+								// forward it to the controller
+								window.location.href = updateUrl;
+							}
+						}
+
+					});
+
+	// -------------------------
+
+});
+
+
+	// --------------------------
+
+/*------*/
+/* handle refresh cart */	
+$('button[name="refreshCart"]').click(function(){
+	var cartLineId = $(this).attr('value');
+	var countField = $('#count_' + cartLineId);
+	var originalCount = countField.attr('value');
+	// do the checking only the count has changed
+	if(countField.val() !== originalCount) {	
+		// check if the quantity is within the specified range
+		if(countField.val() < 1 || countField.val() > 3) {
+			// set the field back to the original field
+			countField.val(originalCount);
+			bootbox.alert({
+				size: 'medium',
+		    	title: 'Error',
+		    	message: 'Product Count should be minimum 1 and maximum 3!'
+			});
+		}
+		else {
+			// use the window.location.href property to send the request to the
+			// server
+			var updateUrl = window.contextRoot + '/cart/' + cartLineId + '/update?count=' + countField.val();
+			window.location.href = updateUrl;
+		}
+	}
+});			
 });

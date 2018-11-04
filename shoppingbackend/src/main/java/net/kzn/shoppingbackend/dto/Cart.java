@@ -10,28 +10,16 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class Cart  implements Serializable{
+public class Cart implements Serializable {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
- 	private int id;
-	/*--------*/
- 	@OneToOne
-	private User user;
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	/*--------*/
-
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	private int id;
 	@Column(name = "grand_total")
 	private double grandTotal;
 	@Column(name = "cart_lines")
@@ -49,8 +37,8 @@ public class Cart  implements Serializable{
 		return grandTotal;
 	}
 
-	public void setGrandTotal(double d) {
-		this.grandTotal = d;
+	public void setGrandTotal(double grandTotal) {
+		this.grandTotal = grandTotal;
 	}
 
 	public int getCartLines() {
@@ -63,10 +51,17 @@ public class Cart  implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", user=" + user + ", grandTotal=" + grandTotal + ", cartLines=" + cartLines
-				+ ", getUser()=" + getUser() + ", getId()=" + getId() + ", getGrandTotal()=" + getGrandTotal()
-				+ ", getCartLines()=" + getCartLines() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ ", toString()=" + super.toString() + "]";
+		return "Cart [id=" + id + ", grandTotal=" + grandTotal + ", cartLines=" + cartLines + "]";
 	}
-
+	
+	// linking the cart with a user
+	@OneToOne
+	private User user;
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 }

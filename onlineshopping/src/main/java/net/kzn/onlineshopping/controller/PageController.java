@@ -1,5 +1,8 @@
 package net.kzn.onlineshopping.controller;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -33,43 +36,52 @@ public class PageController {
 	private ProductDAO productDAO;
 
 	@RequestMapping(value = { "/", "/home", "/index" })
-	public ModelAndView index() {
+	public ModelAndView index(@RequestParam(name = "logout", required = false) String logout) {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "home");
+		mv.addObject("title", "Home");
 
 		logger.info("Inside PageController index method - INFO");
 		logger.debug("Inside PageController index method - DEBUG");
 
 		// passing the list of categories
 		mv.addObject("categories", categoryDAO.list());
-		mv.addObject("userClickHome", true);
 
+		if (logout != null) {
+			mv.addObject("message", "You have successfully logged out!");
+		}
+
+		mv.addObject("userClickHome", true);
 		return mv;
 	}
 
-	@RequestMapping(value = { "/about" })
+	@RequestMapping(value = "/about")
 	public ModelAndView about() {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "About us");
+		mv.addObject("title", "About Us");
 		mv.addObject("userClickAbout", true);
 		return mv;
 	}
 
-	@RequestMapping(value = { "/contact" })
+	@RequestMapping(value = "/contact")
 	public ModelAndView contact() {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "Contact us");
+		mv.addObject("title", "Contact Us");
 		mv.addObject("userClickContact", true);
 		return mv;
 	}
 
+	/*
+	 * Methods to load all the products and based on category
+	 */
+
 	@RequestMapping(value = "/show/all/products")
 	public ModelAndView showAllProducts() {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "All products");
+		mv.addObject("title", "All Products");
 
 		// passing the list of categories
 		mv.addObject("categories", categoryDAO.list());
+
 		mv.addObject("userClickAllProducts", true);
 		return mv;
 	}
@@ -88,32 +100,31 @@ public class PageController {
 		// passing the list of categories
 		mv.addObject("categories", categoryDAO.list());
 
-		// passing the list of category object
+		// passing the single category object
 		mv.addObject("category", category);
 
 		mv.addObject("userClickCategoryProducts", true);
-
 		return mv;
 	}
 
 	/*
-	 * viewing a single product
+	 * Viewing a single product
 	 */
 
 	@RequestMapping(value = "/show/{id}/product")
 	public ModelAndView showSingleProduct(@PathVariable int id) throws ProductNotFoundException {
+
 		ModelAndView mv = new ModelAndView("page");
 
 		Product product = productDAO.get(id);
 
 		if (product == null)
 			throw new ProductNotFoundException();
-		// update the view count
 
+		// update the view count
 		product.setViews(product.getViews() + 1);
 		productDAO.update(product);
-
-		// -----------------------------
+		// ---------------------------
 
 		mv.addObject("title", product.getName());
 		mv.addObject("product", product);
@@ -121,59 +132,51 @@ public class PageController {
 		mv.addObject("userClickShowProduct", true);
 
 		return mv;
+
 	}
 
-	/* HAVING SIMILER MAPPING TO OUR FLOW ID */
-	@RequestMapping(value = "/register")
+	@RequestMapping(value = "/membership")
 	public ModelAndView register() {
 		ModelAndView mv = new ModelAndView("page");
-		mv.addObject("title", "about us");
+
+		logger.info("Page Controller membership called!");
+
 		return mv;
 	}
-	
-	@RequestMapping(value = { "/login" })
-	public ModelAndView login(@RequestParam(name="error" , required = false) String error,
-	@RequestParam(name="logout" , required = false) String logout)
-	
-	{
+
+	@RequestMapping(value = "/login")
+	public ModelAndView login(@RequestParam(name = "error", required = false) String error,
+			@RequestParam(name = "logout", required = false) String logout) {
 		ModelAndView mv = new ModelAndView("login");
-		mv.addObject("title", "Login"); 
-		
-		if(error!=null) {
-			mv.addObject("message", "Invalid Username and Password!");
+		mv.addObject("title", "Login");
+		if (error != null) {
+			mv.addObject("message", "Username and Password is invalid!");
 		}
-		
-		if(logout!=null) {
-			mv.addObject("logout", "User has successfully logged out!");
+		if (logout != null) {
+			mv.addObject("logout", "You have logged out successfully!");
 		}
-		mv.addObject("title","Login");
 		return mv;
 	}
-	
-	/* access denied page */
+
+	@RequestMapping(value = "/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+		// Invalidates HTTP Session, then unbinds any objects bound to it.
+		// Removes the authentication from securitycontext
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+
+		return "redirect:/login?logout";
+	}
+
 	@RequestMapping(value = "/access-denied")
 	public ModelAndView accessDenied() {
 		ModelAndView mv = new ModelAndView("error");
-		mv.addObject("title", "403 - Access Denied");
-		mv.addObject("errorTitle", "Aha! Caught You");
+		mv.addObject("errorTitle", "Aha! Caught You.");
 		mv.addObject("errorDescription", "You are not authorized to view this page!");
+		mv.addObject("title", "403 Access Denied");
 		return mv;
 	}
-	
-	/*Logout*/
-	
-	@RequestMapping(value = "/perform-logout")
-	public String logout(HttpServletRequest request, HttpServletResponse response) {
-		
-	//first we are going to fetch the authentication	
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		
-		if(auth!= null) {
-			
-			new SecurityContextLogoutHandler().logout(request, response, auth);
-			
-		}
-		
-		return "redirect:/login?logout";
-	}
+
 }

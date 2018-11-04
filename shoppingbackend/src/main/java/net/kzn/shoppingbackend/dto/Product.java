@@ -1,5 +1,8 @@
 package net.kzn.shoppingbackend.dto;
 
+
+
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -11,62 +14,64 @@ import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+@Component
 @Entity
-public class Product {
-// Private fields
+public class Product implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
+	// private fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String code;
-	
-	@NotBlank(message = "Please Enter The Product Name!")
+	@NotBlank(message = "Please enter the product name!")
 	private String name;
-	@NotBlank(message = "Please Enter The Brand Name!")
+	@NotBlank(message = "Please enter the brand name!")
 	private String brand;
-	@JsonIgnore
-	@NotBlank(message = "Please Enter The Description for Product!")
+	@NotBlank(message = "Please enter the description!")
 	private String description;
 	@Column(name = "unit_price")
-	@Min(value=1, message="The Price cannot be less than 1! ")
+	@Min(value = 1, message="Please select at least one value!")
 	private double unitPrice;
 	private int quantity;
-	@Column(name = "is_active")
+	@Column(name = "is_active")	
 	private boolean active;
-	@Column(name = "category_Id")
+	@Column(name = "category_id")
 	@JsonIgnore
 	private int categoryId;
-	@Column(name = "supplier_Id")
+	@Column(name = "supplier_id")
 	@JsonIgnore
 	private int supplierId;
 	private int purchases;
 	private int views;
 	
+	
 	@Transient
 	private MultipartFile file;
-	
-	
-	//default constructor
-
+			
 	public MultipartFile getFile() {
 		return file;
 	}
-
 
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
 
 
+	// default constructor
 	public Product() {
+		
 		this.code = "PRD" + UUID.randomUUID().toString().substring(26).toUpperCase();
 		
 	}
 	
 	
+	// setters and getters	
 	public int getId() {
 		return id;
 	}
@@ -84,6 +89,12 @@ public class Product {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getBrand() {
+		return brand;
+	}
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 	public String getDescription() {
 		return description;
@@ -121,30 +132,25 @@ public class Product {
 	public void setSupplierId(int supplierId) {
 		this.supplierId = supplierId;
 	}
+
 	public int getPurchases() {
 		return purchases;
 	}
+
 	public void setPurchases(int purchases) {
 		this.purchases = purchases;
 	}
+
 	public int getViews() {
 		return views;
 	}
+
 	public void setViews(int views) {
 		this.views = views;
 	}
 
-
-	public String getBrand() {
-		return brand;
-	}
-
-
-	public void setBrand(String brand) {
-		this.brand = brand;
-	}
-
-
+	
+	// toString for debugging
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", code=" + code + ", name=" + name + ", brand=" + brand + ", description="
@@ -152,10 +158,4 @@ public class Product {
 				+ ", categoryId=" + categoryId + ", supplierId=" + supplierId + ", purchases=" + purchases + ", views="
 				+ views + "]";
 	}
-
-	}
-	
-	
-	
-
-
+}
