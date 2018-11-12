@@ -36,60 +36,34 @@
 
 	<div class="wrapper">
 
-	    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2" role="navigation">
-	        <div class="container">
-	            <!-- Brand and toggle get grouped for better mobile display -->
-	            <div class="navbar-header">
-	                <a class="navbar-brand" href="${contextRoot}/home">Home</a>
-	            </div>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2"
+			role="navigation">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<a class="navbar-brand" href="${contextRoot}/home">Home</a>
+				</div>
 			</div>
 		</nav>
-			
-		
+
+
 		<div class="content">
-		
 			<div class="container">
-			
 				<div class="row">
-				
 					<div class="col-12">
-					
-						
 						<div class="jumbotron">
-						
 							<h1>Please contact your administrator!</h1>
-							<hr/>
-						
-							<blockquote style="word-wrap:break-word">
-								
-								${flowExecutionException}
-							
-							</blockquote>						
-
-							<blockquote style="word-wrap:break-word">
-								
-								${rootCauseException}
-							
-							</blockquote>						
-						
+							<hr />
+							<blockquote style="word-wrap: break-word">
+								${flowExecutionException}</blockquote>
+							<blockquote style="word-wrap: break-word">
+								${rootCauseException}</blockquote>
 						</div>
-						
-											
-					</div>					
-				
+					</div>
 				</div>
-			
 			</div>
-							
 		</div>
-
-		
-		<%@include file="../../shared/footer.jsp" %>
-
+		<%@include file="../../shared/footer.jsp"%>
 	</div>
-		
-	
 </body>
-
-
 </html>

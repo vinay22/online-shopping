@@ -1,4 +1,5 @@
 $(function() {
+ 	
 	// solving the active menu problem
 	switch (menu) {
 
@@ -31,15 +32,15 @@ $(function() {
 
 	}
 
-	// to tackle the csrf token
+	// for handling CSRF token
 	var token = $('meta[name="_csrf"]').attr('content');
 	var header = $('meta[name="_csrf_header"]').attr('content');
-
-	if (token.length > 0 && header.length > 0) {
+	
+	if((token!=undefined && header !=undefined) && (token.length > 0 && header.length > 0)) {		
 		// set the token header for the ajax request
-		$(document).ajaxSend(function(e, xhr, options) {
-			xhr.setRequestHeader(header, token);
-		});
+		$(document).ajaxSend(function(e, xhr, options) {			
+			xhr.setRequestHeader(header,token);			
+		});				
 	}
 
 	// code for jquery dataTable
@@ -191,7 +192,7 @@ $(function() {
 
 									}
 
-								});
+							});
 					});
 
 	// ---------------------------
@@ -368,7 +369,7 @@ $(function() {
 	function errorPlacement(error, element) {
 		// Add the 'help-block' class to the error element
 		error.addClass("help-block");
-
+		error.addClass("redError");
 		// add the error label after the input element
 		error.insertAfter(element);
 
@@ -378,38 +379,41 @@ $(function() {
 
 	}
 
-	// ---------------------------
-	// validation code for category
-	var $categoryForm = $('#categoryForm');
-	if ($categoryForm.length) {
-		$categoryForm
-				.validate({
-					rules : {
-						name : {
-							required : true,
-							minlength : 2
-						},
-						description : {
-							requried : true
-						}
+	// validating the product form element	
+	// fetch the form element
+	$categoryForm = $('#categoryForm');
+	
+	if($categoryForm.length) {
+		
+		$categoryForm.validate({			
+				rules: {
+					name: {
+						required: true,
+						minlength: 3
 					},
-					messages : {
-						name : {
-							required : 'Please add the category name!',
-							minlength : 'The category name should not be less than 2 characters'
-						},
-						description : {
-							required : 'Please add a description for this category!'
-						}
+					description: {
+						required: true,
+						minlength: 3					
+					}				
+				},
+				messages: {					
+					name: {
+						required: 'Please enter product name!',
+						minlength: 'Please enter atleast five characters'
 					},
-					errorElement : 'em',
-					errorPlacement : function(error, element) {
-						// add the class of help-block
-						error.addClass('help-block');
-						// add the error element after the input element
-						error.insertAfter(element);
-					}
-				});
+					description: {
+						required: 'Please enter product name!',
+						minlength: 'Please enter atleast five characters'
+					}					
+				},
+				errorElement : "em",
+				errorPlacement : function(error, element) {
+					errorPlacement(error, element);
+				}				
+			}
+		
+		);
+		
 	}
 
 	// -------------------------
@@ -441,6 +445,7 @@ $(function() {
 			errorPlacement : function(error, element) {
 				// add the class of help-block
 				error.addClass('help-block');
+				error.addClass('redError');
 				// add the error element after the input element
 				error.insertAfter(element);
 			}
@@ -491,35 +496,31 @@ $(function() {
 
 	// -------------------------
 
-});
-
-
-	// --------------------------
-
-/*------*/
-/* handle refresh cart */	
-$('button[name="refreshCart"]').click(function(){
-	var cartLineId = $(this).attr('value');
-	var countField = $('#count_' + cartLineId);
-	var originalCount = countField.attr('value');
-	// do the checking only the count has changed
-	if(countField.val() !== originalCount) {	
-		// check if the quantity is within the specified range
-		if(countField.val() < 1 || countField.val() > 3) {
-			// set the field back to the original field
-			countField.val(originalCount);
-			bootbox.alert({
-				size: 'medium',
-		    	title: 'Error',
-		    	message: 'Product Count should be minimum 1 and maximum 3!'
-			});
+	/*------*/
+	/* handle refresh cart*/	
+	$('button[name="refreshCart"]').click(function(){
+		var cartLineId = $(this).attr('value');
+		var countField = $('#count_' + cartLineId);
+		var originalCount = countField.attr('value');
+		// do the checking only the count has changed
+		if(countField.val() !== originalCount) {	
+			// check if the quantity is within the specified range
+			if(countField.val() < 1 || countField.val() > 3) {
+				// set the field back to the original field
+				countField.val(originalCount);
+				bootbox.alert({
+					size: 'medium',
+			    	title: 'Error',
+			    	message: 'Product Count should be minimum 1 and maximum 3!'
+				});
+			}
+			else {
+				// use the window.location.href property to send the request to the server
+				var updateUrl = window.contextRoot + '/cart/' + cartLineId + '/update?count=' + countField.val();
+				window.location.href = updateUrl;
+			}
 		}
-		else {
-			// use the window.location.href property to send the request to the
-			// server
-			var updateUrl = window.contextRoot + '/cart/' + cartLineId + '/update?count=' + countField.val();
-			window.location.href = updateUrl;
-		}
-	}
-});			
+	});			
+
+//main function ---------------	
 });

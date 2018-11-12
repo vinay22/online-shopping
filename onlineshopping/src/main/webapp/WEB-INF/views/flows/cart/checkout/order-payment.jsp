@@ -1,5 +1,5 @@
 <%@include file="../../flows-shared/header.jsp" %>
-<div class="container">
+<div class="container mt-5">
 
 	<div class="row">
 			<!--  To display all the goods -->
@@ -7,7 +7,7 @@
 				
 				<div class="row">
 					<c:forEach items="${checkoutModel.cartLines}" var="cartLine">
-					<div class="col-xs-12">
+					<div class="col-12">
 						
 						<div>
 							<h3>${cartLine.product.name}</h3>
@@ -27,13 +27,13 @@
 			</div>
 			
 			<div class="col-md-6">
-	            <div class="panel panel-default">
-	                <div class="panel-heading">
-	                    <h3 class="panel-title">
+	            <div class="card">
+	                <div class="card-header">
+	                    <h3 class="card-title">
 	                        Payment Details
 	                    </h3>
 	                </div>
-	                <div class="panel-body">
+	                <div class="card-body">
 	                    <form role="form">
 	                    <div class="form-group">
 	                        <label for="cardNumber">
@@ -45,7 +45,7 @@
 	                        </div>
 	                    </div>
 	                    <div class="row">
-	                        <div class="col-xs-7 col-md-7">
+	                        <div class="col-7 col-md-7">
 	                            <div class="form-group">
 	                                <label for="expityMonth">EXPIRY DATE</label>
 	                                <br/>
@@ -56,7 +56,7 @@
 	                                    <input type="text" class="form-control" id="expityYear" placeholder="YY" required /></div>
 	                            </div>
 	                        </div>
-	                        <div class="col-xs-5 col-md-5 pull-right">
+	                        <div class="col-5 col-md-5 pull-right">
 	                            <div class="form-group">
 	                                <label for="cvCode">
 	                                    CV CODE</label>

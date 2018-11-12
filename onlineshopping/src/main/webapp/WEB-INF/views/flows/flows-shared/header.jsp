@@ -27,19 +27,26 @@
 	
 </script>
 
-<!-- Bootstrap Core CSS -->
+<!-- Bootstrap core CSS -->
 <link href="${css}/bootstrap.min.css" rel="stylesheet">
 
-<!-- Bootstrap Readable Theme -->
-<link href="${css}/bootstrap-flatly-theme.css" rel="stylesheet">
-
-
-<!-- Bootstrap DataTables -->
+<%-- <!-- Bootstrap cyborg theme -->
+ <link href="${css}/bootstrap-flatly-theme.css" rel="stylesheet">
+ --%>
+ 
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+	integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	crossorigin="anonymous">
+	
+<link href="https://fonts.googleapis.com/css?family=Tajawal:300&amp;subset=arabic" rel="stylesheet">
+ 	
+<!-- Bootstrap dataTables -->
 <link href="${css}/dataTables.bootstrap4.css" rel="stylesheet">
 
-
-<!-- Custom CSS -->
+<!-- Custom styles for this template -->
 <link href="${css}/myapp.css" rel="stylesheet">
+<link href="${css}/myapp2.css" rel="stylesheet">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -54,14 +61,7 @@
 	<div class="se-pre-con"></div>
 	<div class="wrapper">
 
-	    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-2" role="navigation">
-	        <div class="container">
-	            <!-- Brand and toggle get grouped for better mobile display -->
-	            <div class="navbar-header">
-	                <a class="navbar-brand" href="${flowExecutionUrl}&_eventId=home">Online Shopping</a>
-	            </div>
-			</div>
-		</nav>
+<%@include file="../../shared/navbar.jsp" %>
 		
 		
 		<!-- Page Content -->

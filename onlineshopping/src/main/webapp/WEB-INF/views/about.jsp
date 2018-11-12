@@ -6,7 +6,7 @@
 		<hr/>
 		<p>This is an about us page</p>	
 	
-	</div>
+	</div	>
 
 
 </div>

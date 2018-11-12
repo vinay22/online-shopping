@@ -72,13 +72,13 @@
 				<h3 class="text-center">Your Order is Confirmed!!</h3>
 			</div>
 		    <div class="row">
-		        <div class="col-xs-12">
+		        <div class="col-12">
 		    		<div class="invoice-title">
 		    			<h2>Invoice</h2><h3 class="pull-right">Order # ${orderDetail.id}</h3>
 		    		</div>
 		    		<hr>
 		    		<div class="row">
-		    			<div class="col-xs-6">
+		    			<div class="col-6">
 		    				<address>
 		    				<strong>Billed To:</strong><br>
 		    					${orderDetail.user.firstName} ${orderDetail.user.lastName}<br>
@@ -88,7 +88,7 @@
 		    					${orderDetail.billing.state} - ${orderDetail.billing.country}
 		    				</address>
 		    			</div>
-		    			<div class="col-xs-6 text-right">
+		    			<div class="col-6 text-right">
 		    				<address>
 		        			<strong>Shipped To:</strong><br>
 		    					${orderDetail.user.firstName} ${orderDetail.user.lastName}<br>
@@ -100,14 +100,14 @@
 		    			</div>
 		    		</div>
 		    		<div class="row">
-		    			<div class="col-xs-6">
+		    			<div class="col-6">
 		    				<address>
 		    					<strong>Payment Method:</strong><br>
 		    					Card Payment <br>
 		    					${orderDetail.user.email}
 		    				</address>
 		    			</div>
-		    			<div class="col-xs-6 text-right">
+		    			<div class="col-6 text-right">
 		    				<address>
 		    					<strong>Order Date:</strong><br>
 		    					${orderDetail.orderDate}<br><br>
@@ -119,11 +119,11 @@
 		    
 		    <div class="row">
 		    	<div class="col-md-12">
-		    		<div class="panel panel-default">
-		    			<div class="panel-heading">
-		    				<h3 class="panel-title"><strong>Order summary</strong></h3>
+		    		<div class="card">
+		    			<div class="card-header">
+		    				<h3 class="card-title"><strong>Order summary</strong></h3>
 		    			</div>
-		    			<div class="panel-body">
+		    			<div class="card-body">
 		    				<div class="table-responsive">
 		    					<table class="table table-condensed">
 		    						<thead>

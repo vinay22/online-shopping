@@ -5,7 +5,7 @@
 	<c:if test="${not empty message}">
 		<div class="row">
 			<div class="col-12 offset-md-2 col-md-8">
-				<div class="alert alert-success alert-dismissible">${message}</div>
+				<div class="alert alert-danger alert-dismissible">${message}</div>
 			</div>
 		</div>
 	</c:if>
@@ -34,7 +34,7 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="name" class="form-control"
 									placeholder="Product Name" />
-								<sf:errors path="name" cssClass="help-block" element="em" />
+								<sf:errors path="name" cssClass="help-block redError" element="em" />
 							</div>
 						</div>
 
@@ -43,7 +43,7 @@
 							<div class="col-md-8">
 								<sf:input type="text" path="brand" class="form-control"
 									placeholder="Brand Name" />
-								<sf:errors path="brand" cssClass="help-block" element="em" />
+								<sf:errors path="brand" cssClass="help-block redError" element="em" />
 							</div>
 						</div>
 
@@ -52,9 +52,10 @@
 							<div class="col-md-8">
 								<sf:textarea path="description" class="form-control"
 									placeholder="Enter your description here!" />
-								<sf:errors path="description" cssClass="help-block" element="em" />
+								<sf:errors path="description" cssClass="help-block redError" element="em" />
 							</div>
 						</div>
+					
 
 						<div class="form-group row">
 							<label for="unitPrice" class="col-sm-4 col-form-label">Unit
@@ -62,7 +63,7 @@
 							<div class="col-md-8">
 								<sf:input type="number" path="unitPrice" class="form-control"
 									placeholder="Enter Unit Price" />
-								<sf:errors path="unitPrice" cssClass="help-block" element="em" />
+								<sf:errors path="unitPrice" cssClass="help-block redError" element="em" />
 							</div>
 						</div>
 
@@ -71,7 +72,7 @@
 							<div class="col-md-8">
 								<sf:input type="number" path="quantity" class="form-control"
 									placeholder="Enter Quantity" />
-								<sf:errors path="quantity" cssClass="help-block" element="em" />
+								<sf:errors path="quantity" cssClass="help-block redError" element="em" />
 							</div>
 						</div>
 
@@ -81,7 +82,7 @@
 								a file</label>
 							<div class="col-md-8">
 								<sf:input type="file" path="file" class="form-control-file" />
-								<sf:errors path="file" cssClass="help-block" element="em" />
+								<sf:errors path="file" cssClass="help-block redError" element="em" />
 							</div>
 						</div>
 

@@ -1,12 +1,12 @@
-<div class="container">
+<div class="container-fluid">
 
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-2">
 			<%@include file="./shared/sidebar.jsp"%>
 		</div>
 
 		<!-- to display the actual products -->
-		<div class="col-md-9">
+		<div class="col-md-10">
 
 			<!-- Added breadcrumb component -->
 			<div class="row">
@@ -63,8 +63,7 @@
 									<th></th>
 								</tr>
 							</thead>
-
-
+ 
 							<tfoot>
 
 								<tr>
@@ -81,10 +80,8 @@
 						</table>
 					</div>
 				</div>
-
-			</div>
-
-
+ 			</div>
+ 
 		</div>
 
 	</div>

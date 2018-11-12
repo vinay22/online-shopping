@@ -68,7 +68,7 @@
 				<c:if test="${not empty message}">
 					<div class="row">
 						<div class="col-12 offset-md-2 col-md-8">
-							<div class="alert alert-danger fade in">${message}</div>
+							<div class="alert alert-danger alert-dismissible">${message}</div>
 						</div>
 					</div>
 				</c:if>
@@ -95,11 +95,11 @@
 								<form action="${contextRoot}/login" method="POST"
 									class="form-horizontal" id="loginForm">
 									<div class="form-group row">
-										<label for="username" class="col-form-label col-md-4">Email:
+										<label for="email" class="col-form-label col-md-4">Email:
 										</label>
 										<div class="col-md-8">
-											<input type="text" name="username" id="username"
-												class="form-control" />
+											<input type="email" name="username" id="username"
+												class="form-control"/>
 										</div>
 									</div>
 									<div class="form-group row">
@@ -122,7 +122,7 @@
 							</div>
 							<div class="card-footer">
 								<div class="text-right">
-									New User - <a href="${contextRoot}/register">Register Here</a>
+									New User - <a href="${contextRoot}/membership">Register Here</a>
 								</div>
 							</div>
 

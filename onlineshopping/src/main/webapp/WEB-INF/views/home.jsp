@@ -3,22 +3,20 @@
 
 <!-- DataTable Bootstrap Script -->
 <script src="${js}/productsController.js"></script>
-<div class="container" ng-app="ShoppingApp"
+
+<div class="container-fluid" ng-app="ShoppingApp"
 	ng-controller="ProductController as pCtrl">
 
 	<div class="row" ng-init="pCtrl.fetchProducts()">
 
-		<div class="col-lg-3">
+		<%-- <div class="col-lg-2">
 			<%@include file="./shared/sidebar.jsp"%>
-		</div>
+		</div> --%>
 
-		<div class="col-lg-9">
+		<div class="col-lg-12">
 
-			<div class="row">
-
-				<div class="col-md-12">
-
-					<div id="carouselExampleIndicators" class="carousel slide my-4"
+			<div class="row mb-4">
+  					<div id="carouselExampleIndicators" class="carousel slide"
 						data-ride="carousel">
 						<ol class="carousel-indicators">
 							<li data-target="#carouselExampleIndicators" data-slide-to="0"
@@ -31,20 +29,16 @@
 						<div class="carousel-inner" role="listbox">
 
 							<div class="carousel-item active">
-								<img class="d-block img-fluid" src="${images}/banner1.jpg"
-									alt="">
+								<img class="d-block img-fluid" src="${images}/iphone.jpg" alt="">
 							</div>
 							<div class="carousel-item">
-								<img class="d-block img-fluid" src="${images}/banner2.jpg"
-									alt="">
+								<img class="d-block img-fluid" src="${images}/mitv.jpg" alt="">
 							</div>
 							<div class="carousel-item">
-								<img class="d-block img-fluid" src="${images}/banner3.jpg"
-									alt="">
+								<img class="d-block img-fluid" src="${images}/sony.jpg" alt="">
 							</div>
 							<div class="carousel-item">
-								<img class="d-block img-fluid" src="${images}/banner4.jpg"
-									alt="">
+								<img class="d-block img-fluid" src="${images}/nokia.jpg" alt="">
 							</div>
 						</div>
 						<a class="carousel-control-prev" href="#carouselExampleIndicators"
@@ -57,85 +51,125 @@
 							<span class="sr-only">Next</span>
 						</a>
 					</div>
+ 			</div>
+
+			<!--//////////  row start //////////////-->
+			<div class="row mt-5 mx-auto bg-white rounded">
+				<div class="col-2 mt-2 bg-white rounded" style="display: inline;">
+					<a href="${contextRoot}/view/category/1/products"
+						style="text-decoration: none;">
+						<h4 class="titlename mt-2 ml-2">
+							Laptops&nbsp;&nbsp;&nbsp;<i class="fas fa-angle-double-right"></i>
+						</h4>
+					</a>
 				</div>
+ 			</div>
 
-			</div>
-
-			<div class="row">
-				<div class="col-12">
-					<h3>Our Most Viewed Products</h3>
-					<hr />
-				</div>
-			</div>
-
-			<div class="row">
-  
-				<div class="col-lg-4 col-md-6 mb-4"
-					ng-repeat="product in pCtrl.mvProducts">
-					<div class="card h-100">
-						<img ng-src="${images}/{{product.code}}.jpg"
-							alt="{{product.name}}" class="card-img-top">
-						<div class="card-body">
-							<h5>{{product.name}}</h5>
-							<hr />
-							<div class="caption">
-								<h4 class="pull-right">&#8377; {{product.unitPrice}}</h4>
-								<p>{{product.description}}</p>
+			<div class="row mx-auto" style="background-color: white;">
+				<c:forEach items="${viewproducts1}" var="product1" begin="0" end="5" varStatus="loop">
+					<div class="col-lg-2 col-md-6 mb-4">
+						<a ng-href="${contextRoot}/show/${product1.id}/product"
+							style="text-decoration: none;" id="a_${product1.name}">
+							<div class="card h-100" style="border: none;">
+								<img ng-src="${images}/${product1.code}.jpg"
+									alt="${product1.name}" class="card-img-top mt-2">
+								<div class="card-body text-center">
+									<h5 class="productname">${product1.name}</h5>
+									<div class="caption">
+										<h5 class="pull-right productprice">&#8377;
+											${product1.unitPrice}</h5>
+										<!-- <p>{{product.description}}</p> -->
+									</div>
+								</div>
 							</div>
-							<div class="card-footer">
-								<a ng-href="${contextRoot}/show/{{product.id}}/product"
-									class="btn btn-primary pull-right">View</a>
-							</div>
-						</div>
+						</a>
 					</div>
-
-				</div>
-
-				<div class="col-sm-4 col-lg-4 col-md-4">
-					<h4>Checkout more products!</h4>
-					<hr />
-					<a class="btn btn-primary" href="${contextRoot}/show/all/products">More
-						Products</a>
-				</div>
-
+				</c:forEach>
 			</div>
 
-			<div class="row">
-				<div class="col-12">
-					<h3>Our Most Purchased Products</h3>
-					<hr />
+
+			<%-- <div class="row mx-auto mb-5" style="background-color: white;">
+				<div class="col-lg-2 col-md-4 col-sm-6 col-12" style="height: 270px;">
+					<div class="card">
+						<img src="${images}/Apple iPhone 6 32GB .jpg"  class="img-fluid" alt="BeatsX">
+			 		</div>
+				</div>
+			</div> --%>
+			<!--//////////  row end //////////////-->
+
+			<!--//////////  row start //////////////-->
+			<div class="row mt-5 mx-auto bg-white rounded">
+				<div class="col-2 mt-2 bg-white rounded" style="display: inline;">
+					<a href="${contextRoot}/view/category/2/products"
+						style="text-decoration: none;">
+						<h4 class="titlename mt-2 ml-2">
+							Televisions&nbsp;&nbsp;&nbsp;<i
+								class="fas fa-angle-double-right doubleangle"></i>
+						</h4>
+					</a>
 				</div>
 			</div>
-			<div class="row">
 
-				<div class="col-lg-4 col-md-6 mb-4"
-					ng-repeat="product in pCtrl.mpProducts">
-					<div class="card h-100">
-						<img class="card-img-top" ng-src="${images}/{{product.code}}.jpg"
-							alt="{{product.name}}">
-						<div class="card-body">
-							<h5 class="card-title">{{product.name}}</h5>
-							<hr />
-							<div class="caption">
-								<h4 class="pull-right">&#8377; {{product.unitPrice}}</h4>
-								<p>{{product.description}}</p>
+			<div class="row mx-auto" style="background-color: white;">
+				<c:forEach items="${viewproducts2}" var="product2" begin="0" end="5" varStatus="loop">
+					<div class="col-lg-2 col-md-6 mb-4">
+						<a ng-href="${contextRoot}/show/${product2.id}/product"
+							style="text-decoration: none;" id="a_${product2.name}">
+							<div class="card h-100" style="border: none;">
+								<img ng-src="${images}/${product2.code}.jpg"
+									alt="${product2.name}" class="card-img-top mt-2">
+								<div class="card-body text-center">
+									<h5 class="productname">${product2.name}</h5>
+									<div class="caption">
+										<h5 class="pull-right productprice">&#8377;
+											${product2.unitPrice}</h5>
+										<!-- <p>{{product.description}}</p> -->
+									</div>
+								</div>
 							</div>
-							<div class="card-footer">
-								<a ng-href="${contextRoot}/show/{{product.id}}/product"
-									class="btn btn-primary pull-right">View</a>
-							</div>
-						</div>
+						</a>
 					</div>
-				</div>
-
-				<div class="col-sm-4 col-lg-4 col-md-4">
-					<h4>Checkout more products!</h4>
-					<hr />
-					<a class="btn btn-primary" href="${contextRoot}/show/all/products">More
-						Products</a>
-				</div>
-
+				</c:forEach>
 			</div>
+
+			<!--//////////  row end //////////////-->
+
+			<!--//////////  row start //////////////-->
+			<div class="row mt-5 mx-auto bg-white rounded">
+				<div class="col-2 mt-2 bg-white rounded" style="display: inline;">
+					<a href="${contextRoot}/view/category/3/products"
+						style="text-decoration: none;">
+						<h4 class="titlename mt-2 ml-2">
+							Mobiles&nbsp;&nbsp;&nbsp;<i
+								class="fas fa-angle-double-right doubleangle"></i>
+						</h4>
+					</a>
+				</div>
+			</div>
+
+			<div class="row mx-auto" style="background-color: white;">
+				<c:forEach items="${viewproducts3}" var="product3" begin="0" end="5" varStatus="loop">
+					<div class="col-lg-2 col-md-6 mb-4">
+						<a ng-href="${contextRoot}/show/${product3.id}/product"
+							style="text-decoration: none;" id="a_${product3.name}">
+							<div class="card h-100" style="border: none;">
+								<img ng-src="${images}/${product3.code}.jpg"
+									alt="${product3.name}" class="card-img-top mt-2">
+								<div class="card-body text-center">
+									<h5 class="productname">${product3.name}</h5>
+									<div class="caption">
+										<h5 class="pull-right productprice">&#8377;
+											${product3.unitPrice}</h5>
+										<!-- <p>{{product.description}}</p> -->
+									</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</c:forEach>
+			</div>
+
+			<!--//////////  row end //////////////-->
 
 		</div>
 

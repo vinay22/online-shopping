@@ -76,9 +76,9 @@ public class ProductDAOImpl implements ProductDAO {
 			return true;
 		}
 		catch(Exception ex) {		
-			ex.printStackTrace();			
-		}		
-		return false;		
+			//ex.printStackTrace();
+			return false;
+		}					
 	}
 
 	
@@ -141,6 +141,20 @@ public class ProductDAOImpl implements ProductDAO {
 					.createQuery(query,Product.class)
 					.setFirstResult(0)
 					.setMaxResults(count)
+					.getResultList();
+					
+		
+	}
+	
+	@Override
+	public List<Product> searchProductsByParam(String param) {
+		
+		String query = "FROM Product WHERE NAME = :%"+param+"% ";
+		
+		return sessionFactory
+					.getCurrentSession()
+					.createQuery(query,Product.class)
+					.setFirstResult(0)
 					.getResultList();
 					
 		

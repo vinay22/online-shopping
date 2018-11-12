@@ -31,12 +31,12 @@
 						<tr>
 							<td data-th="Product">
 								<div class="row">
-									<div class="col-sm-2 hidden-xs">
+									<div class="col-sm-3 hidden-xs">
 										<img src="${images}/${cartLine.product.code}.jpg"
 											alt="${cartLine.product.name}"
 											class="img-fluid dataTableImg" />
 									</div>
-									<div class="col-sm-10">
+									<div class="col-sm-9">
 										<h4 class="nomargin">${cartLine.product.name}
 											<c:if test="${cartLine.available == false}">
 												<strong style="color: red">(Not Available)</strong>
@@ -57,11 +57,11 @@
 									test="${cartLine.available == true}">
 									<button type="button" name="refreshCart"
 										class="btn btn-info btn-sm" value="${cartLine.id}">
-										<span class="glyphicon glyphicon-refresh"></span>
+										<span class="fas fa-sync-alt"></span>
 									</button>
 								</c:if> <a href="${contextRoot}/cart/${cartLine.id}/remove"
 								class="btn btn-danger btn-sm"><span
-									class="glyphicon glyphicon-trash"></span></a></td>
+									class="fas fa-trash"></span></a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -73,7 +73,7 @@
 					<tr>
 						<td><a href="${contextRoot}/show/all/products"
 							class="btn btn-warning"><span
-								class="glyphicon glyphicon-chevron-left"></span> Continue
+								class="fas fa-chevron-left"></span> Continue
 								Shopping</a></td>
 						<td colspan="2" class="hidden-xs"></td>
 						<td class="hidden-xs text-center"><strong>Total
@@ -83,12 +83,12 @@
 							<c:when test="${availableCount != 0}">
 								<td><a href="${contextRoot}/cart/validate"
 									class="btn btn-success btn-block">Checkout <span
-										class="glyphicon glyphicon-chevron-right"></span></a></td>
+										class="fas fa-chevron-right"></span></a></td>
 							</c:when>
 							<c:otherwise>
 								<td><a href="javascript:void(0)"
 									class="btn btn-success btn-block disabled"><strike>Checkout
-											<span class="glyphicon glyphicon-chevron-right"></span>
+											<span class="fas fa-chevron-right"></span>
 									</strike></a></td>
 							</c:otherwise>
 						</c:choose>

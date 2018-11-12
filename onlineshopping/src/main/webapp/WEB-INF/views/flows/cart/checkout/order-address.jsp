@@ -2,20 +2,20 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form" %>			
 <div class="container">
 
-	<div class="row">
+	<div class="row mt-5">
 		
 			<div class="col-md-4">
-				
-				<h4>Select Shipping Address</h4>
+				<hr/>
+				<h3 class="font-weight-bold">Select Shipping Address</h3>
 				<hr/>
 				
 				<div class="row">
 					<c:forEach items="${addresses}" var="address">					
-						<div class="cols-xs-12">
-							<h3>${address.addressLineOne}</h3>
-							<h3>${address.addressLineTwo}</h3>
-							<h4>${address.city} - ${address.postalCode}</h4>
-							<h4>${address.state} - ${address.country}</h4>
+						<div class="col-12">
+							<h5>${address.addressLineOne}</h5>
+							<h5>${address.addressLineTwo}</h5>
+							<h5>${address.city} - ${address.postalCode}</h5>
+							<h5>${address.state} - ${address.country}</h5>
 							<hr/>
 							<div class="text-center">
 								<a href="${flowExecutionUrl}&_eventId_addressSelection&shippingId=${address.id}" class="btn btn-primary">Select</a>
@@ -30,13 +30,13 @@
 			<div class="col-md-8">
 			
 				
-				<div class="panel panel-primary">
+				<div class="card">
 				
-					<div class="panel-heading">
-						<h4>Sign Up - Address</h4>
+					<div class="card-header">
+						<h3 class="font-weight-bold">Sign Up - Address</h3>
 					</div>
 					
-					<div class="panel-body">
+					<div class="card-body">
 										
 						<sf:form
 							method="POST"

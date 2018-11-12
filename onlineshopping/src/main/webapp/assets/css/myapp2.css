@@ -1,0 +1,25 @@
+
+.titlebar {font-size:18px; padding:6px 50px; color:#60f702; background-color: #232323;} 
+
+.titlename{
+	font-size:25px;
+ 	color: black;
+	font-weight: bold;
+}
+.titlename:hover{color: #626363; }
+
+.productname{
+	font-size:15px;
+	color: black;
+	font-weight: bold; 
+}
+.productname:hover{color: #626363; }
+
+.productprice{
+	font-size:15px;
+	color: black;
+}
+.productprice:hover{color: #626363; }
+
+.doubleangle:hover{color: #626363; }
+ 

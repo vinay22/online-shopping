@@ -1,8 +1,5 @@
 package net.kzn.onlineshopping.controller;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -42,6 +39,24 @@ public class PageController {
 
 		logger.info("Inside PageController index method - INFO");
 		logger.debug("Inside PageController index method - DEBUG");
+
+		// passing the products of category one
+		Category category1 = null;
+		category1 = categoryDAO.get(1);
+		mv.addObject("title", category1.getName());
+		mv.addObject("viewproducts1", productDAO.listActiveProductsByCategory(1));
+
+		// passing the products of category two
+		Category category2 = null;
+		category2 = categoryDAO.get(2);
+		mv.addObject("title", category2.getName());
+		mv.addObject("viewproducts2", productDAO.listActiveProductsByCategory(2));
+
+		// passing the products of category three
+		Category category3 = null;
+		category3 = categoryDAO.get(3);
+		mv.addObject("title", category3.getName());
+		mv.addObject("viewproducts3", productDAO.listActiveProductsByCategory(3));
 
 		// passing the list of categories
 		mv.addObject("categories", categoryDAO.list());
@@ -176,6 +191,37 @@ public class PageController {
 		mv.addObject("errorTitle", "Aha! Caught You.");
 		mv.addObject("errorDescription", "You are not authorized to view this page!");
 		mv.addObject("title", "403 Access Denied");
+		return mv;
+	}
+
+	@RequestMapping(value = "/view/category/{id}/products")
+	public ModelAndView viewProducts(@PathVariable("id") int id) {
+		ModelAndView mv = new ModelAndView("page");
+		// categoryDAO to fetch a single category
+		Category category = null;
+
+		category = categoryDAO.get(id);
+
+		mv.addObject("title", category.getName());
+
+		// passing the list of categories
+		mv.addObject("viewproducts", productDAO.listActiveProductsByCategory(id));
+
+		mv.addObject("userClickViewProducts", true);
+		return mv;
+	}
+
+	
+	@RequestMapping(value = "/search")
+	public ModelAndView Search(@RequestParam(value = "searchTerm", required = false) String pSearchTerm,
+			HttpServletRequest request, HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView("search");
+
+		mv.addObject("searchTerm", pSearchTerm);
+		mv.addObject("searchResult", productDAO.searchProductsByParam(pSearchTerm));
+
+		mv.addObject("userClickSearch", true);
+
 		return mv;
 	}
 

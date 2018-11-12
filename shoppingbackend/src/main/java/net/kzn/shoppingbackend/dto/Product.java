@@ -1,7 +1,5 @@
 package net.kzn.shoppingbackend.dto;
-
-
-
+ 
 import java.io.Serializable;
 import java.util.UUID;
 
@@ -18,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Component
 @Entity
 public class Product implements Serializable {
@@ -150,6 +149,25 @@ public class Product implements Serializable {
 	}
 
 	
+	
+	public Product(int id, String code, String name, String brand, String description, double unitPrice, int quantity,
+			boolean active, int categoryId, int supplierId, int purchases, int views, MultipartFile file) {
+		super();
+		this.id = id;
+		this.code = code;
+		this.name = name;
+		this.brand = brand;
+		this.description = description;
+		this.unitPrice = unitPrice;
+		this.quantity = quantity;
+		this.active = active;
+		this.categoryId = categoryId;
+		this.supplierId = supplierId;
+		this.purchases = purchases;
+		this.views = views;
+		this.file = file;
+	}
+
 	// toString for debugging
 	@Override
 	public String toString() {
